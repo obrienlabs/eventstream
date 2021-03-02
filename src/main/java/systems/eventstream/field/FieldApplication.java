@@ -23,7 +23,7 @@ public class FieldApplication {
 	}
 	
 	
-	@Bean
+/*	@Bean
 	  public CommandLineRunner demo(EventRepository repository) {
 	    return (args) -> {
 	      // import rows
@@ -53,6 +53,6 @@ public class FieldApplication {
 	      repository.findByCategory("category1").forEach(anEvent -> log.info(anEvent.toString()));
 	      log.info("");
 	    };
-	  }
+	  }*/
 	
 }

@@ -7,5 +7,6 @@ import systems.eventstream.field.model.Event;
 public interface EventServiceLocal {
 
 	List<Event> events();
+	void populate();
 
 }

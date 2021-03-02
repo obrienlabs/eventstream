@@ -36,4 +36,10 @@ public class EventController {
 	public List<Event> getEvents() {
 		return applicationService.events();
 	}
+	
+	@GetMapping("/populate")
+	public void populate() {
+		applicationService.populate();
+	}
+	
 }

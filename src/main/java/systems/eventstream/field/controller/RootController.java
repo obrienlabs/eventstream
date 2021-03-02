@@ -19,7 +19,6 @@ public class RootController {
     @Value("${welcome.message}")
     private String message;
     
-    //private List<String> tasks = Arrays.asList("a", "b", "c", "d", "e", "f", "g");
     private List<Event> events;
 	@Autowired
 	EventServiceLocal applicationService;
@@ -28,7 +27,7 @@ public class RootController {
     public String main(Model model) {
     	events = applicationService.events();
         model.addAttribute("message", message);
-        model.addAttribute("tasks", events);
+        model.addAttribute("events", events);
 
         return "welcome"; //view
     }

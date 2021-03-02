@@ -19,7 +19,7 @@
         </h2>
     </div>
     <ol>
-        <li th:each="task : ${tasks}" th:text="${task}"></li>
+        <li th:each="event : ${events}" th:text="${event.timestamp} + ' ' + ${event}"></li>
     </ol>
 </main>
 <!-- /.container -->
