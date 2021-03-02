@@ -28,15 +28,15 @@ public class EventService implements EventServiceLocal {
 	@Override
 	public void populate() {
 	      // import rows
-	      repository.save(new Event(System.nanoTime(), "1", "4", "new", "off", "category1"));
+	      repository.save(new Event(System.nanoTime(), "4", "new", "off", "category1"));
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
-	      repository.save(new Event(System.nanoTime(), "2", "5", "new", "time", "category2"));
+	      repository.save(new Event(System.nanoTime(), "5", "new", "time", "category2"));
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
-	      repository.save(new Event(System.nanoTime(), "3", "6", "done", "time", "category1"));
+	      repository.save(new Event(System.nanoTime(), "6", "done", "time", "category1"));
 
 	      log.info("Events found with findAll():");
 	      log.info("-------------------------------");

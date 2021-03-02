@@ -24,6 +24,14 @@ public class Event {
 
   protected Event() {}
 
+  public Event(Long timestamp, String value, String label, String type, String category) {
+	  this.timestamp = timestamp;
+	  this.value = value;
+	  this.label = label;
+	  this.type = type;
+	  this.category = category;
+  }
+  
   public Event(Long timestamp, String key, String value, String label, String type, String category) {
 	  this.timestamp = timestamp;
 	  this.key = key;
