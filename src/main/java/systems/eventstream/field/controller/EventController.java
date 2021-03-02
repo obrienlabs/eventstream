@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import systems.eventstream.field.model.Event;
-import systems.eventstream.field.service.EventService;
 import systems.eventstream.field.service.EventServiceLocal;
 
 @RestController
@@ -40,6 +41,12 @@ public class EventController {
 	@GetMapping("/populate")
 	public void populate() {
 		applicationService.populate();
+	}
+	
+	@PostMapping(value="/createEvent")//, consumes="application/json", produces="application/json")
+	public Event createEvent(@RequestBody Event event) {
+		Event anEvent = applicationService.saveUpdateEvent(event);
+		return anEvent;
 	}
 	
 }

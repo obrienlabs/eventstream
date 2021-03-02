@@ -25,6 +25,8 @@ public class EventService implements EventServiceLocal {
 		return repository.findAll();
 	}
 	
+	
+	
 	@Override
 	public void populate() {
 	      // import rows
@@ -58,6 +60,13 @@ public class EventService implements EventServiceLocal {
 	      repository.findByCategory("category1").forEach(anEvent -> log.info(anEvent.toString()));
 	      log.info("");
 	
+	}
+
+
+
+	@Override
+	public Event saveUpdateEvent(Event event) {
+		return repository.save(event);
 	}
 
 }
