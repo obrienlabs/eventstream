@@ -15,6 +15,7 @@
 	<description>Field EventStream</description>
 	<properties>
 		<java.version>11</java.version>
+		<!--  spring-boot.version>2.2.2</spring-boot.version-->
 		<spring-boot-admin.version>2.3.1</spring-boot-admin.version>
 		<springfox-version>2.9.2</springfox-version>
 	</properties>
@@ -27,10 +28,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-        <dependency>
+		<!-- spring fox issue -->
+        <!-- dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
-        </dependency>
+        </dependency -->
    		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -105,6 +107,12 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
+        <!-- fix spring fox 2.9.2 issue -->
+        <!--dependency>
+            <groupId>org.springframework.plugin</groupId>
+            <artifactId>spring-plugin-core</artifactId>
+            <version>1.2.0.RELEASE</version>
+        </dependency-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
