@@ -13,7 +13,7 @@ public class HealthApiDelegateService implements HealthApiDelegate {
 	public ResponseEntity<Health> health() {
 		Health health = new Health();
 		health.setKey("state");
-		health.setValue("ok");
+		health.setValue("OK");
 		return ResponseEntity.ok(health);
 	}
 }

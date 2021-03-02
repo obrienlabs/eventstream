@@ -30,7 +30,7 @@ public interface HealthApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "ok", response = Health.class),
         @ApiResponse(code = 200, message = "Unexpected error") })
-    @RequestMapping(value = "/health/",
+    @RequestMapping(value = "/health",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<Health> health() {

@@ -34,7 +34,7 @@ public class OpenAPIDocumentationConfig {
     }
 
     @Bean
-    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.eventstream.base-path:/v1}") String basePath) {
+    public Docket customImplementation(ServletContext servletContext, @Value("") String basePath) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                     .apis(RequestHandlerSelectors.basePackage("systems.eventstream.field"))

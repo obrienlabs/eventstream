@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("${openapi.backendATBStub.base-path:/v1}")
+@RequestMapping("/")
 public class HealthApiController implements HealthApi {
 
     private final HealthApiDelegate delegate;
