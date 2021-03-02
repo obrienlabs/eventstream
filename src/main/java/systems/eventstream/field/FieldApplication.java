@@ -27,11 +27,11 @@ public class FieldApplication {
 	  public CommandLineRunner demo(EventRepository repository) {
 	    return (args) -> {
 	      // import rows
-//	      repository.save(new Event(System.nanoTime(), "1", "4", "new", "off", "category1"));
+	      repository.save(new Event(System.nanoTime(), "1", "4", "new", "off", "category1"));
 	      Thread.sleep(1);
-//	      repository.save(new Event(System.nanoTime(), "2", "5", "new", "time", "category2"));
+	      repository.save(new Event(System.nanoTime(), "2", "5", "new", "time", "category2"));
 	      Thread.sleep(1);
-//	      repository.save(new Event(System.nanoTime(), "3", "6", "done", "time", "category1"));
+	      repository.save(new Event(System.nanoTime(), "3", "6", "done", "time", "category1"));
 
 	      log.info("Events found with findAll():");
 	      log.info("-------------------------------");
