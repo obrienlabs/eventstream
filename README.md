@@ -18,7 +18,7 @@ Running the app
 
 First time run with ddlgen on
 
-java -jar target/field-0.0.1-SNAPSHOT.jar --spring.datasource.url=jdbc:h2:file:/Users/michaelobrien/ised/field --spring.jpa.hibernate.ddl-auto=create
+java -jar target/field-0.0.1-SNAPSHOT.jar --spring.datasource.url=jdbc:h2:file:/Users/michaelobrien/obrienlabs/field --spring.jpa.hibernate.ddl-auto=create
 
 Populate some records
 
@@ -30,5 +30,5 @@ curl -X POST "http://127.0.0.1:8081/event/createEvent" -H "accept: */*" -H "Cont
 
 rerun without create on to keep the DB as-is
 
-java -jar target/field-0.0.1-SNAPSHOT.jar --spring.datasource.url=jdbc:h2:file:/Users/michaelobrien/ised/field --spring.jpa.hibernate.ddl-auto=create
+java -jar target/field-0.0.1-SNAPSHOT.jar --spring.datasource.url=jdbc:h2:file:/Users/michaelobrien/obrienlabs/field --spring.jpa.hibernate.ddl-auto=create
 
