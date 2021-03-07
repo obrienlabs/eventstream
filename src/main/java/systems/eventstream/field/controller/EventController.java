@@ -43,10 +43,8 @@ public class EventController {
 		applicationService.populate();
 	}
 	
-	@PostMapping(value="/createEvent")//, consumes="application/json", produces="application/json")
+	@PostMapping(value="/createEvent", consumes="application/json", produces="application/json")
 	public Event createEvent(@RequestBody Event event) {
-		Event anEvent = applicationService.saveUpdateEvent(event);
-		return anEvent;
+		return applicationService.saveUpdateEvent(event);
 	}
-	
 }
