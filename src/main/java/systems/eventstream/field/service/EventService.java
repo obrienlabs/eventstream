@@ -1,5 +1,6 @@
 package systems.eventstream.field.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -25,20 +26,34 @@ public class EventService implements EventServiceLocal {
 		return repository.findAll();
 	}
 	
-	
-	
 	@Override
 	public void populate() {
 	      // import rows
-	      repository.save(new Event(System.nanoTime(), "4", "new", "off", "category1"));
+		  List<String> labels = new ArrayList<>();
+		  labels.add("fte");
+		  labels.add("team1");
+		  labels.add("proj1");
+		  labels.add("proj2");
+		  
+	      repository.save(new Event(System.nanoTime(), "time", "2", "1", "category1", labels));
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
-	      repository.save(new Event(System.nanoTime(), "5", "new", "time", "category2"));
+
+		  labels = new ArrayList<>();
+		  labels.add("contract");
+		  labels.add("team2");
+		  labels.add("proj2");
+	      repository.save(new Event(System.nanoTime(), "hours", "2", "1", "category2", labels));
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
-	      repository.save(new Event(System.nanoTime(), "6", "done", "time", "category1"));
+	      
+		  labels = new ArrayList<>();
+		  labels.add("contract");
+		  labels.add("team2");
+		  labels.add("proj1");
+	      repository.save(new Event(System.nanoTime(), "days", "4", "2", "category1", labels));
 
 	      log.info("Events found with findAll():");
 	      log.info("-------------------------------");
@@ -47,8 +62,8 @@ public class EventService implements EventServiceLocal {
 	      }
 	      log.info("");
 
-	      Event event = repository.findByKey("2");
-	      log.info("Events found with findByKey(2):");
+	      Event event = repository.findByKey("time");
+	      log.info("Events found with findByKey(time):");
 	      log.info("--------------------------------");
 	      if(null != event) {
 	    	  log.info(event.toString());

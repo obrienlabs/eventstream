@@ -2,6 +2,7 @@ package systems.eventstream.field.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,26 +18,27 @@ public class Event {
   private String key;
   private String value;
   private String state;
-  //private List<String> labels;
-  private String label;
   private String type;
   private String category;
+  
+  @ElementCollection
+  private List<String> labels;
 
   protected Event() {}
 
-  public Event(Long timestamp, String value, String label, String type, String category) {
+  public Event(Long timestamp, String value, String type, String category, List<String> labels) {
 	  this.timestamp = timestamp;
 	  this.value = value;
-	  this.label = label;
+	  this.labels = labels;
 	  this.type = type;
 	  this.category = category;
   }
   
-  public Event(Long timestamp, String key, String value, String label, String type, String category) {
+  public Event(Long timestamp, String key, String value, String type, String category, List<String> labels) {
 	  this.timestamp = timestamp;
 	  this.key = key;
 	  this.value = value;
-	  this.label = label;
+	  this.labels = labels;
 	  this.type = type;
 	  this.category = category;
   }
@@ -81,14 +83,6 @@ public class Event {
 		this.state = state;
 	}
 
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -105,13 +99,19 @@ public class Event {
 		this.category = category;
 	}
 
+	public List<String> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List<String> labels) {
+		this.labels = labels;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", timestamp=" + timestamp + ", key=" + key + ", value=" + value + ", state=" + state
-				+ ", label=" + label + ", type=" + type + ", category=" + category + "]";
+				+ ", type=" + type + ", category=" + category + ", labels=" + labels + "]";
 	}
-
-
 
 
 }

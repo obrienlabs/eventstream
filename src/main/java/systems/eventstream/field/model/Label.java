@@ -10,7 +10,8 @@ public class Label {
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.AUTO)
 	  private Long id;
-	  private String label;
+	  private String tag;
+	  
 	public Long getId() {
 		return id;
 	}
@@ -18,17 +19,17 @@ public class Label {
 		this.id = id;
 	}
 	public String getLabel() {
-		return label;
+		return tag;
 	}
 	public void setLabel(String label) {
-		this.label = label;
+		this.tag = label;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		return result;
 	}
 	@Override
@@ -45,16 +46,16 @@ public class Label {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (label == null) {
-			if (other.label != null)
+		if (tag == null) {
+			if (other.tag != null)
 				return false;
-		} else if (!label.equals(other.label))
+		} else if (!tag.equals(other.tag))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Label [id=" + id + ", label=" + label + "]";
+		return "Label [id=" + id + ", tag=" + tag + "]";
 	}
 	  
 	  
