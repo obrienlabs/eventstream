@@ -6,19 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Label {
+public class Selector {
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.AUTO)
 	  private Long id;
-
-	  private String key;
-	  private String value;
+	  private String tag;
 	  
 	  
-	public Label(String key, String value) {
+	  
+	public Selector(String tag) {
 		super();
-		this.key = key;
-		this.value = value;
+		this.tag = tag;
 	}
 	
 	public Long getId() {
@@ -27,25 +25,18 @@ public class Label {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getKey() {
-		return key;
+	public String getTag() {
+		return tag;
 	}
-	public void setKey(String key) {
-		this.key = key;
-	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		result = prime * result + ((tag == null) ? 0 : tag.hashCode());
 		return result;
 	}
 	@Override
@@ -56,30 +47,23 @@ public class Label {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Label other = (Label) obj;
+		Selector other = (Selector) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (key == null) {
-			if (other.key != null)
+		if (tag == null) {
+			if (other.tag != null)
 				return false;
-		} else if (!key.equals(other.key))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
+		} else if (!tag.equals(other.tag))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Label [id=" + id + ", key=" + key + ", value=" + value + "]";
+		return "Selector [id=" + id + ", tag=" + tag + "]";
 	}
-	  
-	
 	  
 	  
 }

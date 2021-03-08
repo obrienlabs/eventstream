@@ -14,8 +14,7 @@ import systems.eventstream.field.model.Event;
 public interface EventRepository extends CrudRepository<Event, Long> {
 
 	  //List<Event> findByCategory(@Param("category") String category);
-	  List<Event> findByCategory(String category);
-	  Event findByKey(String key);
+	  List<Event> findByState(String state);
 	  Event findById(long id);
 	  List<Event> findAll();
 	}

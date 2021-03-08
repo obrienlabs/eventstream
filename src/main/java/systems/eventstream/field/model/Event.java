@@ -1,6 +1,8 @@
 package systems.eventstream.field.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,34 +17,25 @@ public class Event {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   private Long timestamp;
-  private String key;
-  private String value;
   private String state;
-  private String type;
-  private String category;
   
   @ElementCollection
-  private List<String> labels;
+  private Map<String, String> map = new HashMap<>();
+  
+  @ElementCollection
+  private List<String> tags;
+  
+
+  
 
   protected Event() {}
 
-  public Event(Long timestamp, String value, String type, String category, List<String> labels) {
+  public Event(Long timestamp, String state) {
 	  this.timestamp = timestamp;
-	  this.value = value;
-	  this.labels = labels;
-	  this.type = type;
-	  this.category = category;
+	  this.state = state;
+
   }
   
-  public Event(Long timestamp, String key, String value, String type, String category, List<String> labels) {
-	  this.timestamp = timestamp;
-	  this.key = key;
-	  this.value = value;
-	  this.labels = labels;
-	  this.type = type;
-	  this.category = category;
-  }
-
 	public Long getId() {
 		return id;
 	}
@@ -59,22 +52,6 @@ public class Event {
 		this.timestamp = timestamp;
 	}
 
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
 	public String getState() {
 		return state;
 	}
@@ -83,34 +60,18 @@ public class Event {
 		this.state = state;
 	}
 
-	public String getType() {
-		return type;
+	public List<String> getTags() {
+		return tags;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public List<String> getLabels() {
-		return labels;
-	}
-
-	public void setLabels(List<String> labels) {
-		this.labels = labels;
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", timestamp=" + timestamp + ", key=" + key + ", value=" + value + ", state=" + state
-				+ ", type=" + type + ", category=" + category + ", labels=" + labels + "]";
+		return "Event [id=" + id + ", timestamp=" + timestamp + ", state=" + state
+				+ ", tags=" + tags + "]";
 	}
 
 

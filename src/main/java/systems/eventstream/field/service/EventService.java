@@ -28,56 +28,55 @@ public class EventService implements EventServiceLocal {
 	
 	@Override
 	public void populate() {
+		
+		// global entities
+		
+		
 	      // import rows
-		  List<String> labels = new ArrayList<>();
-		  labels.add("fte");
-		  labels.add("team1");
-		  labels.add("proj1");
-		  labels.add("proj2");
-		  
-	      repository.save(new Event(System.nanoTime(), "time", "2", "1", "category1", labels));
+		  List<String> tags = new ArrayList<>();
+		  tags.add("fte");
+		  tags.add("team1");
+		  tags.add("proj1");
+		  tags.add("proj2");
+	      repository.save(new Event(System.nanoTime(), "1"));
+	      
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
 
-		  labels = new ArrayList<>();
-		  labels.add("contract");
-		  labels.add("team2");
-		  labels.add("proj2");
-	      repository.save(new Event(System.nanoTime(), "hours", "2", "1", "category2", labels));
+		  tags = new ArrayList<>();
+		  tags.add("contract");
+		  tags.add("team2");
+		  tags.add("proj2");
+	      repository.save(new Event(System.nanoTime(), "2"));
+	      
 	      try {
 	    	  Thread.sleep(1);
 	      } catch (Exception e) { }
 	      
-		  labels = new ArrayList<>();
-		  labels.add("contract");
-		  labels.add("team2");
-		  labels.add("proj1");
-	      repository.save(new Event(System.nanoTime(), "days", "4", "2", "category1", labels));
+		  tags = new ArrayList<>();
+		  tags.add("contract");
+		  tags.add("team2");
+		  tags.add("proj1");
+	      repository.save(new Event(System.nanoTime(), "3"));
 
 	      log.info("Events found with findAll():");
 	      log.info("-------------------------------");
 	      for (Event event : repository.findAll()) {
 	        log.info(event.toString());
 	      }
-	      log.info("");
 
-	      Event event = repository.findByKey("time");
+	      /*Event event = repository.findByKey("time");
 	      log.info("Events found with findByKey(time):");
 	      log.info("--------------------------------");
 	      if(null != event) {
 	    	  log.info(event.toString());
-	      }
-	      log.info("");
+	      }*/
 
-	      log.info("Events found with findByCategory('category1'):");
+	      log.info("Events found with findByState('1'):");
 	      log.info("--------------------------------------------");
-	      repository.findByCategory("category1").forEach(anEvent -> log.info(anEvent.toString()));
-	      log.info("");
-	
+	      repository.findByState("1").forEach(anEvent -> log.info(anEvent.toString()));
 	}
-
-
 
 	@Override
 	public Event saveUpdateEvent(Event event) {
