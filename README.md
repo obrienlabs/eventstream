@@ -6,6 +6,7 @@ http://127.0.0.1:8181/es/
 
 API
 http://127.0.0.1:8181/es/health/
+
 http://127.0.0.1:8181/es/events/
 
 swagger
