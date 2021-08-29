@@ -10,6 +10,7 @@ PORT_IN=8080
 PORT_OUT=8888
 RELEASE_ID=0.0.1
 DOCKERFILE=DockerFile
+DOCKERHUB_ORG=obrienlabs
 
 # static templates
 BUILD_ID=10001
@@ -19,19 +20,23 @@ TARGET_DIR=../../$BUILD_DIR/$BUILD_ID
 mkdir $TARGET_DIR
 
 cd ../../
-#mvn clean install -U -DskipTests=true
+mvn clean install -U -DskipTests=true
 cd src/docker
 cp ../../target/*.jar $TARGET_DIR
 cp $DOCKERFILE $TARGET_DIR
 cp startService.sh $TARGET_DIR
 cd $TARGET_DIR
-docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t obrienlabs/$CONTAINER_IMAGE -f $DOCKERFILE .
-#docker tag $CONTAINER_IMAGE:latest $CONTAINER_IMAGE:latest
-docker tag obrienlabs/$CONTAINER_IMAGE obrienlabs/$CONTAINER_IMAGE:$RELEASE_ID
-docker tag obrienlabs/$CONTAINER_IMAGE obrienlabs/$CONTAINER_IMAGE:latest
-# dockerhub
-docker push obrienlabs/$CONTAINER_IMAGE:$RELEASE_ID
-docker push obrienlabs/$CONTAINER_IMAGE:latest
+docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $CONTAINER_IMAGE -f $DOCKERFILE .
+docker tag $CONTAINER_IMAGE $CONTAINER_IMAGE:latest
+docker tag $CONTAINER_IMAGE $CONTAINER_IMAGE:$RELEASE_ID
+
+# DockerHub only
+#docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $DOCKERHUB_ORG/$CONTAINER_IMAGE -f $DOCKERFILE .
+#docker tag $DOCKERHUB_ORG/$CONTAINER_IMAGE $DOCKERHUB_ORG/$CONTAINER_IMAGE:$RELEASE_ID
+#docker tag $DOCKERHUB_ORG/$CONTAINER_IMAGE $DOCKERHUB_ORG/$CONTAINER_IMAGE:latest
+#docker push obrienlabs/$CONTAINER_IMAGE:$RELEASE_ID
+#docker push obrienlabs/$CONTAINER_IMAGE:latest
+
 # locally
 docker stop $CONTAINER_IMAGE
 docker rm $CONTAINER_IMAGE
@@ -40,10 +45,15 @@ docker run --name $CONTAINER_IMAGE \
     -d -p $PORT_OUT:$PORT_IN \
     -e os.environment.configuration.dir=/ \
     -e os.environment.ecosystem=sbx \
-    obrienlabs/$CONTAINER_IMAGE:$RELEASE_ID
-
-# Health check
-
+    $CONTAINER_IMAGE:$RELEASE_ID
 
 cd ../../src/docker
 
+# Health check
+echo "sleep 10 sec"
+sleep 10
+echo "run a $PORT_OUT/v1/health/ endpoint to check the container"
+
+# todo fix versioning
+#curl -X GET "http://127.0.0.1:$PORT_OUT/v1/health/" -H "accept: application/json"
+curl -X GET "http://127.0.0.1:$PORT_OUT/health/" -H "accept: application/json"
