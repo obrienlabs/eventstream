@@ -9,7 +9,7 @@ CONTAINER_IMAGE=eventstream
 PORT_IN=8080
 PORT_OUT=8888
 RELEASE_ID=0.0.1
-DOCKERFILE=DockerFile
+DOCKER_FILE=DockerFile
 DOCKERHUB_ORG=obrienlabs
 
 # static templates
@@ -23,15 +23,15 @@ cd ../../
 mvn clean install -U -DskipTests=true
 cd src/docker
 cp ../../target/*.jar $TARGET_DIR
-cp $DOCKERFILE $TARGET_DIR
+cp $DOCKER_FILE $TARGET_DIR
 cp startService.sh $TARGET_DIR
 cd $TARGET_DIR
-docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $CONTAINER_IMAGE -f $DOCKERFILE .
+docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $CONTAINER_IMAGE -f $DOCKER_FILE .
 docker tag $CONTAINER_IMAGE $CONTAINER_IMAGE:latest
 docker tag $CONTAINER_IMAGE $CONTAINER_IMAGE:$RELEASE_ID
 
 # DockerHub only
-#docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $DOCKERHUB_ORG/$CONTAINER_IMAGE -f $DOCKERFILE .
+#docker build --rm=true --no-cache --build-arg build-id=$BUILD_ID -t $DOCKERHUB_ORG/$CONTAINER_IMAGE -f $DOCKER_FILE .
 #docker tag $DOCKERHUB_ORG/$CONTAINER_IMAGE $DOCKERHUB_ORG/$CONTAINER_IMAGE:$RELEASE_ID
 #docker tag $DOCKERHUB_ORG/$CONTAINER_IMAGE $DOCKERHUB_ORG/$CONTAINER_IMAGE:latest
 #docker push obrienlabs/$CONTAINER_IMAGE:$RELEASE_ID
