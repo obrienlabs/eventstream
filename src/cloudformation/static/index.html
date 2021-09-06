@@ -25,7 +25,7 @@ $(document).ready(function() {
                     success: function(res){   
                         event=res.event;
                         //alert(event);
-                        $('#eventid').html('<div class="alert alert-info" role="alert">' 
+                        $('#eventid').html('<div class="alert alert-info" role="alert">Backend ID: ' 
                                 + res.event
                                 + '</div>');},                     
                         error: function(){
