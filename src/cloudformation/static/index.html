@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+<meta charset="UTF-8">
+<title>Portal</title>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>         
+<script type="text/javascript">         
+$(document).ready(function() {                      
+    $("#submit").click(function(e) {
+//      $("#upload").click(function(e) {
+        e.preventDefault();                          
+        var name = $("#name").val(),                     
+        email = $("#email").val(),                     
+        metadata = $("#metadata").val();
+        var event;
+        // get eventid - turn on/deploy CORS on the APIGW end
+        $.ajax({                     
+                type: "GET",                     
+                url: 'https://hvsiwxa3o7.execute-api.us-east-1.amazonaws.com/dev',  
+                contentType: 'application/json',
+                    success: function(res){   
+                        event=res.event;
+                        //alert(event);
+                        $('#eventid').html('<div class="alert alert-info" role="alert">' 
+                                + res.event
+                                + '</div>');},                     
+                        error: function(){
+                               $('#eventid').html('<div class="alert alert-info" role="alert">Issues with your eventid....</div>');                     
+                               }
+                        });       
+        
+         }) 
+        });      
+</script>
+</head>
+<body>
+<h1>Portal</h1>
+
+<form method="post" action="" enctype="multipart/form-data" id="myform">
+<div class="form-label-group"> 
+<input type="text" id="name" class="form-control" required> 
+<label for="name" class="control-label">Name</label> 
+</div> 
+<div class="form-label-group"> 
+<input type="text" id="email" class="form-control" required> 
+<label for="email" class="control-label">Email address</label> </div> 
+<div class="form-label-group"> 
+<textarea id="metadata" name="metadata" rows="5" class="form-control" placeholder="metadata"></textarea>
+</div> 
+<div id="eventid"></div> 
+
+<button class="btn btn-lg btn-primary btn-block" id="submit" type="submit" style="background-color:#28547C;">upload</button>
+<div>
+            <input type="file" id="file" name="file" />
+            <input type="button" class="button" value="upload" id="upload">
+</div>
+</form>
+
+</body>
+</html>
