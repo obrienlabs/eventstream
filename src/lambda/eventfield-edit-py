@@ -5,6 +5,7 @@ import boto3
 print('Loading function')
 
 s3 = boto3.client('s3')
+db = boto3.client('dynamodb')
 
 
 def lambda_handler(event, context):
