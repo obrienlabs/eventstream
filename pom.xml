@@ -17,7 +17,7 @@
 		<java.version>17</java.version>
 		<!--  spring-boot.version>2.2.2</spring-boot.version-->
 		<spring-boot-admin.version>2.3.1</spring-boot-admin.version>
-		<springfox-version>2.9.2</springfox-version>
+		<springfox-version>2.10.0</springfox-version>
 	</properties>
 	<dependencies>
 		<dependency>
